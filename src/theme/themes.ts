@@ -79,6 +79,7 @@ export const THEMES: Theme[] = [
 
 export type EditionId =
   | 'editorial'
+  | 'zine'
   | 'bento'
   | 'dossier'
   | 'broadsheet'
@@ -99,6 +100,13 @@ export const EDITIONS: Edition[] = [
     tagline: 'The original',
     description:
       'Magazine spread with hard ink shadows — asymmetric hero, a tilted sticker, timeline work history and a real contact form.',
+  },
+  {
+    id: 'zine',
+    name: 'Zine',
+    tagline: 'Editorial, but loud',
+    description:
+      'Same bones as Editorial with square corners, thick rules, cards tilted half a degree and headings on accent slabs.',
   },
   {
     id: 'bento',

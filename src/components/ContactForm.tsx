@@ -7,9 +7,10 @@ import './ContactForm.css'
  * The email form, shared by every edition. Markup and behaviour are
  * identical; each edition restyles `.cf__*` under its own root class.
  *
- * Delivery goes through EmailJS. If the keys are missing (local dev
- * before .env.local exists) it falls back to opening a mailto: draft
- * rather than silently pretending to have sent something.
+ * Delivery goes through EmailJS. The recipient is set by the "To Email"
+ * field on the EmailJS template — it cannot be set from here, by design.
+ * If the keys are missing, or a send fails, the visitor is handed a
+ * pre-filled mail draft so a message is never lost.
  */
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
@@ -61,15 +62,15 @@ export default function ContactForm({ className = '' }: { className?: string }) 
         SERVICE_ID,
         TEMPLATE_ID,
         {
-          // Sent under several aliases so the template works whichever
-          // variable names it was set up with.
+          // The visitor's details. Deliberately NOT sent as `email` or
+          // `reply_to`: if the template's "To Email" referenced either of
+          // those, the message would silently deliver to the sender
+          // instead of to Neha. Better to fail loudly.
           from_name: form.name,
           from_email: form.email,
           name: form.name,
-          email: form.email,
-          reply_to: form.email,
           message: form.message,
-          // Recipient — covers templates whose "To Email" is a variable
+          // Recipient, for templates whose "To Email" is `{{to_email}}`
           // rather than a hard-coded address.
           to_name: PROFILE.name,
           to_email: PROFILE.email,
@@ -98,7 +99,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
           ✳
         </span>
         <h3>Message sent — thank you.</h3>
-        <p>It's in my inbox and I'll reply within a day, usually sooner.</p>
+        <p>It's on its way to my inbox and I'll reply within a day, usually sooner.</p>
         <button className="cf__submit cf__submit--ghost" onClick={() => setStatus('idle')}>
           Write another
         </button>
@@ -127,7 +128,7 @@ export default function ContactForm({ className = '' }: { className?: string }) 
   const sending = status === 'sending'
 
   return (
-    <form className={`cf ${className}`} onSubmit={handleSubmit} noValidate={false}>
+    <form className={`cf ${className}`} onSubmit={handleSubmit}>
       <label className="cf__field">
         <span className="cf__label">Your name</span>
         <input
@@ -184,14 +185,26 @@ export default function ContactForm({ className = '' }: { className?: string }) 
       />
 
       {status === 'error' && (
-        <p className="cf__error" role="alert">
-          That didn't go through. Try again, or email me directly at{' '}
-          <a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>.
+        <div className="cf__error" role="alert">
+          <p>
+            That didn't go through — sorry. Try again, or send it straight from your own email app
+            so you don't lose what you wrote.
+          </p>
+          <button
+            type="button"
+            className="cf__fallback"
+            onClick={() => {
+              openMailDraft()
+              setStatus('drafted')
+            }}
+          >
+            Open in my email app instead
+          </button>
           {/* Raw API reason during development only — never shown to visitors */}
           {import.meta.env.DEV && errorDetail && (
             <span className="cf__error-detail">{errorDetail}</span>
           )}
-        </p>
+        </div>
       )}
 
       <button type="submit" className="cf__submit" disabled={sending}>

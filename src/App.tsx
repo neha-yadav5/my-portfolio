@@ -5,12 +5,14 @@ import Dossier from './editions/Dossier'
 import Editorial from './editions/Editorial'
 import Poster from './editions/Poster'
 import Timeline from './editions/Timeline'
+import Zine from './editions/Zine'
 import { useReveal } from './hooks/useReveal'
 import { useAppearance } from './theme/useTheme'
 import type { EditionId } from './theme/themes'
 
 const EDITION_COMPONENTS: Record<EditionId, () => React.JSX.Element> = {
   editorial: Editorial,
+  zine: Zine,
   bento: Bento,
   dossier: Dossier,
   broadsheet: Broadsheet,

@@ -18,6 +18,16 @@ function Wireframe({ kind }: { kind: EditionId }) {
           </span>
         </>
       )}
+      {kind === 'zine' && (
+        <>
+          <i className="wire__bar wire__slab wire__slab--tilt" />
+          <span className="wire__row">
+            <i className="wire__bar" />
+            <i className="wire__bar" />
+          </span>
+          <i className="wire__bar" />
+        </>
+      )}
       {kind === 'bento' && (
         <span className="wire__grid">
           <i className="wire__tile wire__tile--lead" />

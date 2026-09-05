@@ -17,9 +17,11 @@ import './Editorial.css'
  * an asymmetric hero, a tilted sticker, a timeline work history and the
  * only contact form of the set.
  */
-export default function Editorial() {
+export default function Editorial({
+  variant = 'editorial',
+}: { variant?: 'editorial' | 'zine' } = {}) {
   return (
-    <div className="edition ed">
+    <div className={`edition ed${variant === 'zine' ? ' zine' : ''}`}>
       <Nav />
       <main>
         <Hero />

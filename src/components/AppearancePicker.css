@@ -315,11 +315,17 @@
   flex: 1;
 }
 
-/* poster */
+/* poster + zine */
 .wire__slab {
   flex: 2.4;
   background: var(--accent);
   border-radius: 0 !important;
+}
+
+.wire__slab--tilt {
+  flex: 1.8;
+  width: 78%;
+  rotate: -3deg;
 }
 
 .wire__band {
