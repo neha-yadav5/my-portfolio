@@ -1,0 +1,172 @@
+/* ============================================================
+   ZINE — Editorial's bones, poster energy.
+   Square corners, thick rules, deliberate misalignment.
+   Everything overrides `.ed` under the extra `.zine` class.
+   ============================================================ */
+.ed.zine {
+  --r-md: 0px;
+  --r-lg: 0px;
+  --shadow-hard: 8px 8px 0 var(--edge);
+  --shadow-hard-sm: 5px 5px 0 var(--edge);
+  --shell: 1240px;
+}
+
+/* ─── Hard edges everywhere ────────────────────────────────── */
+.ed.zine .work__card,
+.ed.zine .toolkit__group,
+.ed.zine .about__principle,
+.ed.zine .hero__stat,
+.ed.zine .contact__form-wrap {
+  border-width: 3px;
+  border-radius: 0;
+}
+
+.ed.zine .chip,
+.ed.zine .work__period,
+.ed.zine .contact__copy,
+.ed.zine .cf__input {
+  border-radius: 0;
+  border-width: 2px;
+  border-color: var(--edge);
+}
+
+.ed.zine .btn,
+.ed.zine .cf__submit,
+.ed.zine .cf__fallback,
+.ed.zine .nav__cta,
+.ed.zine .nav__sheet-cta {
+  border-radius: 0;
+  border-width: 3px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ed.zine .nav__mark {
+  border-radius: 0;
+  border-width: 3px;
+}
+
+.ed.zine .nav--stuck {
+  border-bottom-width: 3px;
+}
+
+/* ─── Louder type ──────────────────────────────────────────── */
+.ed.zine .hero__title {
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  max-width: 13ch;
+}
+
+/* Section titles ride on a tilted accent slab */
+.ed.zine .section-title {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.15em 0.4em;
+  letter-spacing: -0.045em;
+  rotate: -1deg;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.ed.zine .section-head {
+  padding-left: 0;
+}
+
+.ed.zine .section-head::before {
+  display: none;
+}
+
+.ed.zine .section-sub {
+  margin-top: 1.25rem;
+}
+
+.ed.zine .footer__name {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+.ed.zine .footer {
+  border-top-width: 3px;
+}
+
+/* ─── Sticker & marquee ────────────────────────────────────── */
+.ed.zine .hero__sticker {
+  rotate: -14deg;
+  border-width: 3px;
+  font-size: 0.85rem;
+}
+
+.ed.zine .hero__marquee {
+  border-block-width: 3px;
+  padding-block: 1.1rem;
+}
+
+.ed.zine .hero__marquee-item {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Deliberate misalignment ──────────────────────────────── */
+.ed.zine .work__item:nth-child(odd) .work__card {
+  rotate: -0.6deg;
+}
+
+.ed.zine .work__item:nth-child(even) .work__card {
+  rotate: 0.6deg;
+}
+
+.ed.zine .work__card:hover {
+  rotate: 0deg;
+}
+
+.ed.zine .about__principle:nth-child(odd) {
+  rotate: -0.7deg;
+}
+
+.ed.zine .about__principle:nth-child(even) {
+  rotate: 0.7deg;
+}
+
+.ed.zine .about__principle:hover {
+  rotate: 0deg;
+}
+
+/* ─── Blocks ───────────────────────────────────────────────── */
+.ed.zine .about__quote {
+  border-radius: 0;
+  border-left-width: 6px;
+  background: var(--accent-3-soft);
+}
+
+.ed.zine .toolkit {
+  border-block-width: 3px;
+}
+
+.ed.zine .toolkit__grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.ed.zine .work__education {
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 0;
+  background: var(--accent-3-soft);
+}
+
+.ed.zine .contact__mail {
+  border-bottom-width: 4px;
+}
+
+/* Straighten up on small screens — tilt reads as broken there */
+@media (max-width: 720px) {
+  .ed.zine .work__card,
+  .ed.zine .about__principle {
+    rotate: 0deg !important;
+  }
+}

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
-  DEFAULT_LAYOUT,
+  DEFAULT_EDITION,
   DEFAULT_THEME,
-  LAYOUTS,
-  LAYOUT_KEY,
+  EDITIONS,
+  EDITION_KEY,
   THEMES,
   THEME_KEY,
-  type LayoutId,
+  type EditionId,
   type ThemeId,
 } from './themes'
 
@@ -29,16 +29,13 @@ function persist(key: string, value: string) {
 }
 
 const THEME_IDS = THEMES.map(t => t.id)
-const LAYOUT_IDS = LAYOUTS.map(l => l.id)
+const EDITION_IDS = EDITIONS.map(e => e.id)
 
-/**
- * Owns both appearance axes. Values are written to <html> as data attributes
- * so components stay prop-free and read everything through CSS.
- */
+/** Owns both axes and mirrors them onto <html> as data attributes. */
 export function useAppearance() {
   const [theme, setThemeState] = useState<ThemeId>(() => read(THEME_KEY, THEME_IDS, DEFAULT_THEME))
-  const [layout, setLayoutState] = useState<LayoutId>(() =>
-    read(LAYOUT_KEY, LAYOUT_IDS, DEFAULT_LAYOUT),
+  const [edition, setEditionState] = useState<EditionId>(() =>
+    read(EDITION_KEY, EDITION_IDS, DEFAULT_EDITION),
   )
 
   useEffect(() => {
@@ -46,18 +43,19 @@ export function useAppearance() {
   }, [theme])
 
   useEffect(() => {
-    document.documentElement.dataset.layout = layout
-  }, [layout])
+    document.documentElement.dataset.edition = edition
+  }, [edition])
 
   const setTheme = useCallback((next: ThemeId) => {
     setThemeState(next)
     persist(THEME_KEY, next)
   }, [])
 
-  const setLayout = useCallback((next: LayoutId) => {
-    setLayoutState(next)
-    persist(LAYOUT_KEY, next)
+  const setEdition = useCallback((next: EditionId) => {
+    setEditionState(next)
+    persist(EDITION_KEY, next)
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }, [])
 
-  return { theme, setTheme, layout, setLayout }
+  return { theme, setTheme, edition, setEdition }
 }

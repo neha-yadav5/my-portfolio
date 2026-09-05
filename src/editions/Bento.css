@@ -1,0 +1,632 @@
+/* ============================================================
+   BENTO — soft rounded tiles, centred, airy
+   ============================================================ */
+.bn {
+  --tile-r: 26px;
+  --tile-shadow: 0 22px 44px -30px color-mix(in srgb, var(--edge) 80%, transparent);
+}
+
+/* ─── Nav ──────────────────────────────────────────────────── */
+.bn__nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 1rem clamp(1.25rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.bn__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-right: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bn__mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.bn__nav-links {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1.5px solid var(--line);
+}
+
+.bn__nav-links a {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background-color 200ms var(--ease), color 200ms var(--ease);
+}
+
+.bn__nav-links a:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.bn__nav-cta {
+  padding: 0.5rem 1.15rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  transition: transform 200ms var(--ease);
+}
+
+.bn__nav-cta:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── Hero ─────────────────────────────────────────────────── */
+.bn__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.bn__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+
+.bn__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-soft);
+  animation: bn-pulse 2.4s infinite;
+}
+
+@keyframes bn-pulse {
+  70% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.bn__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  max-width: 18ch;
+  margin: 1.5rem 0 1.25rem;
+}
+
+.bn__standfirst {
+  max-width: 58ch;
+  font-size: var(--t-lg);
+  color: var(--ink-2);
+}
+
+.bn__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.bn__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font-weight: 600;
+  font-size: var(--t-base);
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+
+.bn__btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--tile-shadow);
+}
+
+.bn__btn--solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
+/* ─── Tiles ────────────────────────────────────────────────── */
+.bn__tile {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--tile-r);
+  padding: clamp(1.35rem, 2.5vw, 1.9rem);
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+
+.bn__tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--tile-shadow);
+}
+
+.bn__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.bn__tile--current {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
+.bn__tile--current .chip {
+  background: color-mix(in srgb, var(--accent-ink) 15%, transparent);
+  border-color: color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  color: var(--accent-ink);
+}
+
+.bn__tile-label {
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.bn__tile-role {
+  font-family: var(--font-display);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-top: 0.5rem;
+}
+
+.bn__tile-company {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.bn__tile-text {
+  margin-top: 0.75rem;
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.bn__tile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+}
+
+.bn__tile--stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bn__stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.bn__stat-value em {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: 0;
+}
+
+.bn__stat-label {
+  margin-top: 0.5rem;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+.bn__tile--quote {
+  grid-column: span 3;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--bg-2);
+}
+
+.bn__tile--quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+  line-height: 1.35;
+}
+
+.bn__quote-mark {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  line-height: 0.6;
+  color: var(--accent);
+  align-self: flex-start;
+}
+
+.bn__place {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-top: 0.4rem;
+}
+
+/* ─── Sections ─────────────────────────────────────────────── */
+.bn__section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.bn__section--tinted {
+  background: var(--bg-2);
+}
+
+.bn__head {
+  max-width: 46rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.bn__eyebrow {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.bn__section-title {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  margin-top: 0.6rem;
+}
+
+.bn__section-sub {
+  margin-top: 0.9rem;
+  color: var(--ink-2);
+  font-size: var(--t-lg);
+}
+
+/* ─── About ────────────────────────────────────────────────── */
+.bn__about {
+  display: grid;
+  gap: 1rem;
+}
+
+.bn__story {
+  display: grid;
+  gap: 1rem;
+  max-width: 62ch;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: var(--t-lg);
+}
+
+.bn__principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.bn__principle-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.bn__principle h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-top: 0.35rem;
+}
+
+.bn__principle p {
+  margin-top: 0.4rem;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ─── Work ─────────────────────────────────────────────────── */
+.bn__work {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.bn__job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.bn__job-role {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.bn__job-company {
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 0.2rem;
+}
+
+.bn__job-company span {
+  display: block;
+  font-weight: 400;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+.bn__job-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  line-height: 1.05;
+  flex: none;
+}
+
+.bn__job-metric strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--accent-2);
+}
+
+.bn__job-metric em {
+  font-style: normal;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+
+.bn__job-period {
+  margin-top: 0.85rem;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+.bn__job-summary {
+  margin-top: 0.75rem;
+  font-size: var(--t-base);
+  line-height: 1.55;
+}
+
+.bn__job-bullets {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.bn__job-bullets li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.bn__job-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--accent);
+}
+
+.bn__education {
+  margin-top: 1rem;
+  text-align: center;
+  background: var(--bg-2);
+}
+
+.bn__education h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0.35rem;
+}
+
+/* ─── Toolkit ──────────────────────────────────────────────── */
+.bn__toolkit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.bn__skill h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.bn__skill .bn__tile-text {
+  margin-top: 0.2rem;
+}
+
+/* ─── Contact ──────────────────────────────────────────────── */
+.bn__contact {
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: var(--bg-2);
+}
+
+.bn__contact .bn__section-sub {
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+.bn__email {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.8vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  word-break: break-word;
+  border-bottom: 3px solid var(--accent-soft);
+  transition: border-color 220ms var(--ease);
+}
+
+.bn__email:hover {
+  border-bottom-color: var(--accent);
+}
+
+.bn__contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.bn__form {
+  max-width: 34rem;
+  margin: 2.5rem auto 0;
+  padding-top: 2rem;
+  border-top: 1.5px dashed var(--line);
+  text-align: left;
+}
+
+.bn__form-label {
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+
+.bn__form .cf__input {
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.bn__form .cf__submit {
+  justify-self: stretch;
+  justify-content: center;
+}
+
+/* ─── Footer ───────────────────────────────────────────────── */
+.bn__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2.5rem;
+  border-top: 1.5px solid var(--line);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+.bn__footer a:hover {
+  color: var(--accent);
+}
+
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .bn__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bn__tile--current {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .bn__tile--quote {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .bn__nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .bn__grid {
+    grid-template-columns: 1fr;
+  }
+  .bn__tile--current,
+  .bn__tile--quote {
+    grid-column: span 1;
+  }
+  .bn__tile--quote {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}

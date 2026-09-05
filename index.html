@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="citrus" data-layout="editorial">
+<html lang="en" data-theme="citrus" data-edition="bento">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -21,26 +21,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
 
     <script>
-      // Apply the saved palette before first paint so themes never flash.
+      // Apply the saved design + palette before first paint so nothing flashes.
       (function () {
         try {
-          var saved = localStorage.getItem('ny-theme')
-          var allowed = ['citrus', 'blossom', 'sorbet', 'moss', 'blueprint', 'lagoon', 'grape']
-          if (saved && allowed.indexOf(saved) !== -1) {
-            document.documentElement.dataset.theme = saved
+          var themes = ['citrus', 'blossom', 'sorbet', 'moss', 'blueprint', 'lagoon', 'grape']
+          var editions = [
+            'editorial',
+            'zine',
+            'bento',
+            'dossier',
+            'broadsheet',
+            'poster',
+            'timeline',
+          ]
+
+          var theme = localStorage.getItem('ny-theme')
+          if (theme && themes.indexOf(theme) !== -1) {
+            document.documentElement.dataset.theme = theme
           }
-          var layout = localStorage.getItem('ny-layout')
-          var layouts = ['editorial', 'rail', 'bento', 'zine']
-          if (layout && layouts.indexOf(layout) !== -1) {
-            document.documentElement.dataset.layout = layout
+
+          var edition = localStorage.getItem('ny-edition')
+          if (edition && editions.indexOf(edition) !== -1) {
+            document.documentElement.dataset.edition = edition
           }
         } catch (e) {
-          /* storage blocked — keep the default theme */
+          /* storage blocked — keep the defaults */
         }
       })()
     </script>

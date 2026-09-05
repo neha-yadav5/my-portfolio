@@ -1,7 +1,7 @@
 /* ============================================================
-   NEHA YADAV — design system
-   Palettes live in themes.ts and switch via <html data-theme>.
-   Every component reads colour through the variables below only.
+   NEHA YADAV — shared foundation
+   Palettes + reset + the handful of primitives every edition
+   uses. Each edition owns its own layout CSS.
    ============================================================ */
 
 /* ─── Palettes ─────────────────────────────────────────────── */
@@ -23,7 +23,7 @@
   --edge: #1a1109;
 }
 
-/* Pastel apricot ground; headings bloom through rose → lilac → marigold */
+/* Pastel apricot ground; headings bloom rose → lilac → marigold */
 [data-theme='blossom'] {
   color-scheme: light;
   --bg: #ffe7d2;
@@ -115,19 +115,19 @@
   --edge: #0d0817;
 }
 
-/* ─── Derived tokens (shared by every palette) ─────────────── */
+/* ─── Derived tokens ───────────────────────────────────────── */
 :root {
   --accent-soft: color-mix(in srgb, var(--accent) 20%, transparent);
   --accent-faint: color-mix(in srgb, var(--accent) 9%, transparent);
   --accent-2-soft: color-mix(in srgb, var(--accent-2) 20%, transparent);
   --accent-3-soft: color-mix(in srgb, var(--accent-3) 26%, transparent);
-  --line-soft: color-mix(in srgb, var(--line) 55%, transparent);
+  --ink-faint: color-mix(in srgb, var(--ink) 8%, transparent);
 
   --font-display: 'Bricolage Grotesque', 'Trebuchet MS', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Fluid type scale */
   --t-xs: 0.78rem;
   --t-sm: 0.88rem;
   --t-base: 1.02rem;
@@ -137,19 +137,8 @@
   --t-3xl: clamp(2.3rem, 3.4vw + 1.2rem, 3.8rem);
   --t-hero: clamp(2.9rem, 7vw + 0.5rem, 6.2rem);
 
-  --r-sm: 6px;
-  --r-md: 12px;
-  --r-lg: 20px;
-  --r-xl: 32px;
-  --r-full: 999px;
-
   --shell: 1180px;
-  --nav-h: 72px;
-
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --shadow-hard: 5px 5px 0 var(--edge);
-  --shadow-hard-sm: 3px 3px 0 var(--edge);
-  --shadow-soft: 0 18px 40px -24px color-mix(in srgb, var(--edge) 60%, transparent);
 }
 
 /* ─── Reset ────────────────────────────────────────────────── */
@@ -164,7 +153,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 16px);
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -177,14 +166,14 @@ body {
   transition: background-color 400ms var(--ease), color 400ms var(--ease);
 }
 
-/* Paper grain — keeps flat colour from looking synthetic */
+/* Paper grain — keeps flat colour from reading as synthetic */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.38;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
 }
@@ -206,7 +195,8 @@ svg {
   max-width: 100%;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
 }
 
@@ -243,14 +233,14 @@ textarea {
 }
 ::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--ink) 25%, transparent);
-  border-radius: var(--r-full);
+  border-radius: 999px;
   border: 3px solid var(--bg-2);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
 
-/* ─── Layout helpers ───────────────────────────────────────── */
+/* ─── Shared primitives ────────────────────────────────────── */
 .shell {
   width: 100%;
   max-width: var(--shell);
@@ -258,88 +248,38 @@ textarea {
   padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
-.section {
+.edition {
   position: relative;
   z-index: 2;
-  padding-block: clamp(4.5rem, 9vw, 8rem);
 }
 
-/* ─── Type helpers ─────────────────────────────────────────── */
-.display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
-.serif-it {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
-
-.eyebrow {
+.chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--bg-2);
   font-size: var(--t-sm);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
+  font-weight: 500;
+  transition: transform 180ms var(--ease), border-color 180ms var(--ease),
+    background-color 180ms var(--ease);
 }
 
-.eyebrow::before {
-  content: '';
-  width: 26px;
-  height: 2px;
-  background: var(--accent);
+.chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent-faint);
 }
 
-.section-head {
-  max-width: 46ch;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: var(--t-3xl);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  margin-block: 0.6rem 0.9rem;
-}
-
-.section-sub {
-  color: var(--ink-2);
-  font-size: var(--t-lg);
-  max-width: 52ch;
-}
-
-/* Floral heading treatment — only the blossom palette opts in */
-[data-theme='blossom'] .hero__title,
-[data-theme='blossom'] .section-title,
-[data-theme='blossom'] .hero__stat-value,
-[data-theme='blossom'] .contact__mail {
-  background-image: var(--bloom);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-[data-theme='blossom'] .eyebrow {
-  color: #b5316a;
-}
-
-/* Hand-drawn highlighter behind a phrase */
 .marker {
-  background-image: linear-gradient(transparent 58%, var(--accent-soft) 58%, var(--accent-soft) 94%, transparent 94%);
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--accent-soft) 58%,
+    var(--accent-soft) 94%,
+    transparent 94%
+  );
   padding-inline: 0.1em;
-}
-
-.marker--alt {
-  background-image: linear-gradient(transparent 58%, var(--accent-2-soft) 58%, var(--accent-2-soft) 94%, transparent 94%);
 }
 
 .underline-wobble {
@@ -353,73 +293,27 @@ textarea {
   left: -0.05em;
   right: -0.05em;
   bottom: -0.12em;
-  height: 0.36em;
+  height: 0.34em;
   background: var(--accent);
   opacity: 0.85;
   clip-path: polygon(0 42%, 8% 22%, 24% 48%, 44% 20%, 66% 46%, 84% 24%, 100% 44%, 100% 74%, 0 82%);
 }
 
-/* ─── Buttons ──────────────────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.85rem 1.5rem;
-  border-radius: var(--r-full);
-  font-weight: 600;
-  font-size: var(--t-base);
-  border: 2px solid var(--edge);
-  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease),
-    background-color 200ms var(--ease), color 200ms var(--ease);
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.btn--solid {
-  background: var(--accent);
-  color: var(--accent-ink);
-  box-shadow: var(--shadow-hard);
-}
-
-.btn--ghost {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-hard);
-}
-
-.btn:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 var(--edge);
-}
-
-.btn:active {
-  transform: translate(5px, 5px);
-  box-shadow: none;
-}
-
-/* ─── Surfaces ─────────────────────────────────────────────── */
-.panel {
-  background: var(--surface);
-  border: 2px solid var(--edge);
-  border-radius: var(--r-lg);
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: var(--r-full);
-  border: 1.5px solid var(--line);
-  background: var(--bg-2);
-  font-size: var(--t-sm);
-  font-weight: 500;
-  transition: transform 180ms var(--ease), border-color 180ms var(--ease),
-    background-color 180ms var(--ease);
-}
-
-.chip:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  background: var(--accent-faint);
+/* Floral heading treatment — the blossom palette only */
+[data-theme='blossom'] .bloom-type {
+  background-image: var(--bloom);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ─── Motion ───────────────────────────────────────────────── */
