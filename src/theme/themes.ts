@@ -1,17 +1,18 @@
 /* ============================================================
-   Two independent axes drive the whole site:
-     <html data-theme="…">   → colour palette
-     <html data-layout="…">  → structure, shape language, density
+   Two independent axes:
+     <html data-theme="…">    → colour palette (7 of them)
+     <html data-edition="…">  → which portfolio design renders
+   Any palette works with any edition.
    ============================================================ */
 
 export type ThemeId =
   | 'citrus'
   | 'blossom'
-  | 'lagoon'
   | 'sorbet'
   | 'moss'
-  | 'grape'
   | 'blueprint'
+  | 'lagoon'
+  | 'grape'
 
 export type Theme = {
   id: ThemeId
@@ -33,7 +34,7 @@ export const THEMES: Theme[] = [
   {
     id: 'blossom',
     name: 'Peach Blossom',
-    mood: 'Pastel apricot paper, headings in rose, lilac and marigold',
+    mood: 'Pastel apricot, headings in rose, lilac and marigold',
     mode: 'light',
     swatch: ['#D6407A', '#8B5CF6', '#FFE7D2'],
   },
@@ -74,46 +75,69 @@ export const THEMES: Theme[] = [
   },
 ]
 
-/* ─── Layouts ──────────────────────────────────────────────── */
+/* ─── Editions: five separate portfolios ───────────────────── */
 
-export type LayoutId = 'editorial' | 'rail' | 'bento' | 'zine'
+export type EditionId =
+  | 'editorial'
+  | 'bento'
+  | 'dossier'
+  | 'broadsheet'
+  | 'poster'
+  | 'timeline'
 
-export type Layout = {
-  id: LayoutId
+export type Edition = {
+  id: EditionId
   name: string
+  tagline: string
   description: string
-  /** Tiny wireframe drawn in the picker so the shape is obvious before clicking */
-  preview: 'editorial' | 'rail' | 'bento' | 'zine'
 }
 
-export const LAYOUTS: Layout[] = [
+export const EDITIONS: Edition[] = [
   {
     id: 'editorial',
     name: 'Editorial',
-    description: 'Magazine spread. Big left-aligned type, asymmetric columns, hard ink shadows.',
-    preview: 'editorial',
-  },
-  {
-    id: 'rail',
-    name: 'Side Rail',
-    description: 'Fixed sidebar with your name and nav; content scrolls beside it. Quiet and precise.',
-    preview: 'rail',
+    tagline: 'The original',
+    description:
+      'Magazine spread with hard ink shadows — asymmetric hero, a tilted sticker, timeline work history and a real contact form.',
   },
   {
     id: 'bento',
     name: 'Bento',
-    description: 'Everything in soft rounded tiles on a grid. Centred, airy, product-y.',
-    preview: 'bento',
+    tagline: 'Modern product site',
+    description:
+      'Centred hero, then a grid of soft tiles — stats, quote, currently-at, skills. Friendly and immediately readable.',
   },
   {
-    id: 'zine',
-    name: 'Zine',
-    description: 'Poster energy. Square corners, thick rules, tilted stickers, tight and loud.',
-    preview: 'zine',
+    id: 'dossier',
+    name: 'Dossier',
+    tagline: 'Quiet and senior',
+    description:
+      'Fixed sidebar with your details; work is a numbered index that expands in place. Restrained, precise, very hire-ready.',
+  },
+  {
+    id: 'broadsheet',
+    name: 'Broadsheet',
+    tagline: 'Newspaper feature',
+    description:
+      'A masthead, a drop cap and multi-column text. Reads like a profile written about you rather than a CV.',
+  },
+  {
+    id: 'poster',
+    name: 'Poster',
+    tagline: 'Loud and graphic',
+    description:
+      'Full-screen type, scrolling marquees, numbered slabs and tilted stickers. The one people remember.',
+  },
+  {
+    id: 'timeline',
+    name: 'Timeline',
+    tagline: 'Scrolling story',
+    description:
+      'One continuous spine from 2021 to now, with the year pinned beside you as you scroll through each chapter.',
   },
 ]
 
 export const DEFAULT_THEME: ThemeId = 'citrus'
-export const DEFAULT_LAYOUT: LayoutId = 'editorial'
+export const DEFAULT_EDITION: EditionId = 'bento'
 export const THEME_KEY = 'ny-theme'
-export const LAYOUT_KEY = 'ny-layout'
+export const EDITION_KEY = 'ny-edition'

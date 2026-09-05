@@ -1,31 +1,38 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Experience from './components/Experience'
-import Skills from './components/Skills'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import ThemePicker from './components/ThemePicker'
+import AppearancePicker from './components/AppearancePicker'
+import Bento from './editions/Bento'
+import Broadsheet from './editions/Broadsheet'
+import Dossier from './editions/Dossier'
+import Editorial from './editions/Editorial'
+import Poster from './editions/Poster'
+import Timeline from './editions/Timeline'
 import { useReveal } from './hooks/useReveal'
+import { useAppearance } from './theme/useTheme'
+import type { EditionId } from './theme/themes'
 
-function App() {
-  useReveal()
+const EDITION_COMPONENTS: Record<EditionId, () => React.JSX.Element> = {
+  editorial: Editorial,
+  bento: Bento,
+  dossier: Dossier,
+  broadsheet: Broadsheet,
+  poster: Poster,
+  timeline: Timeline,
+}
+
+export default function App() {
+  const { theme, setTheme, edition, setEdition } = useAppearance()
+  useReveal(edition)
+
+  const Edition = EDITION_COMPONENTS[edition]
 
   return (
     <>
-      <Navbar />
-      <main id="content">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-      <ThemePicker />
+      <Edition key={edition} />
+      <AppearancePicker
+        theme={theme}
+        setTheme={setTheme}
+        edition={edition}
+        setEdition={setEdition}
+      />
     </>
   )
 }
-
-export default App
