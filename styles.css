@@ -1,0 +1,450 @@
+/* ============================================================
+   NEHA YADAV — design system
+   Palettes live in themes.ts and switch via <html data-theme>.
+   Every component reads colour through the variables below only.
+   ============================================================ */
+
+/* ─── Palettes ─────────────────────────────────────────────── */
+/* Default (Citrus Punch) also lives on :root so the page paints
+   correctly before the theme script runs. */
+:root,
+[data-theme='citrus'] {
+  color-scheme: light;
+  --bg: #fff7ee;
+  --bg-2: #ffeedd;
+  --surface: #ffffff;
+  --ink: #1a1109;
+  --ink-2: #6b5b4c;
+  --line: #e4d5c3;
+  --accent: #f0500a;
+  --accent-ink: #ffffff;
+  --accent-2: #2354e6;
+  --accent-3: #f5b301;
+  --edge: #1a1109;
+}
+
+/* Pastel apricot ground; headings bloom through rose → lilac → marigold */
+[data-theme='blossom'] {
+  color-scheme: light;
+  --bg: #ffe7d2;
+  --bg-2: #ffd9bc;
+  --surface: #fff7ef;
+  --ink: #4a2733;
+  --ink-2: #8a6470;
+  --line: #f0c9ad;
+  --accent: #d6407a;
+  --accent-ink: #ffffff;
+  --accent-2: #8b5cf6;
+  --accent-3: #ef8c1f;
+  --edge: #4a2733;
+  --bloom: linear-gradient(104deg, #d6407a 0%, #a855f7 34%, #ef7a1f 66%, #12a06a 100%);
+}
+
+[data-theme='sorbet'] {
+  color-scheme: light;
+  --bg: #fff3f6;
+  --bg-2: #ffe4ec;
+  --surface: #ffffff;
+  --ink: #2a1020;
+  --ink-2: #7a5c6c;
+  --line: #f2d3de;
+  --accent: #d6146b;
+  --accent-ink: #ffffff;
+  --accent-2: #6d28d9;
+  --accent-3: #0d9488;
+  --edge: #2a1020;
+}
+
+[data-theme='moss'] {
+  color-scheme: light;
+  --bg: #f4f3e9;
+  --bg-2: #e9e8d8;
+  --surface: #fdfdf7;
+  --ink: #16201a;
+  --ink-2: #5d6b60;
+  --line: #d8d7c3;
+  --accent: #0f6e4c;
+  --accent-ink: #ffffff;
+  --accent-2: #c2410c;
+  --accent-3: #a16207;
+  --edge: #16201a;
+}
+
+[data-theme='blueprint'] {
+  color-scheme: light;
+  --bg: #eef3f9;
+  --bg-2: #dfe8f4;
+  --surface: #ffffff;
+  --ink: #0b1b2b;
+  --ink-2: #5a6b7d;
+  --line: #cddaea;
+  --accent: #1d4ed8;
+  --accent-ink: #ffffff;
+  --accent-2: #db2777;
+  --accent-3: #0891b2;
+  --edge: #0b1b2b;
+}
+
+[data-theme='lagoon'] {
+  color-scheme: dark;
+  --bg: #06232b;
+  --bg-2: #0a2f39;
+  --surface: #0d3743;
+  --ink: #eafaf6;
+  --ink-2: #93b8b7;
+  --line: #17505d;
+  --accent: #2dd4bf;
+  --accent-ink: #04222a;
+  --accent-2: #ff7a5c;
+  --accent-3: #ffd166;
+  --edge: #021a20;
+}
+
+[data-theme='grape'] {
+  color-scheme: dark;
+  --bg: #16101f;
+  --bg-2: #1e1630;
+  --surface: #241b39;
+  --ink: #f3ecfd;
+  --ink-2: #a99bc4;
+  --line: #3a2d56;
+  --accent: #c084fc;
+  --accent-ink: #1c0f2b;
+  --accent-2: #a3e635;
+  --accent-3: #fb7185;
+  --edge: #0d0817;
+}
+
+/* ─── Derived tokens (shared by every palette) ─────────────── */
+:root {
+  --accent-soft: color-mix(in srgb, var(--accent) 20%, transparent);
+  --accent-faint: color-mix(in srgb, var(--accent) 9%, transparent);
+  --accent-2-soft: color-mix(in srgb, var(--accent-2) 20%, transparent);
+  --accent-3-soft: color-mix(in srgb, var(--accent-3) 26%, transparent);
+  --line-soft: color-mix(in srgb, var(--line) 55%, transparent);
+
+  --font-display: 'Bricolage Grotesque', 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+
+  /* Fluid type scale */
+  --t-xs: 0.78rem;
+  --t-sm: 0.88rem;
+  --t-base: 1.02rem;
+  --t-lg: clamp(1.1rem, 0.4vw + 1rem, 1.25rem);
+  --t-xl: clamp(1.35rem, 1vw + 1.1rem, 1.7rem);
+  --t-2xl: clamp(1.8rem, 2vw + 1.2rem, 2.6rem);
+  --t-3xl: clamp(2.3rem, 3.4vw + 1.2rem, 3.8rem);
+  --t-hero: clamp(2.9rem, 7vw + 0.5rem, 6.2rem);
+
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 32px;
+  --r-full: 999px;
+
+  --shell: 1180px;
+  --nav-h: 72px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-hard: 5px 5px 0 var(--edge);
+  --shadow-hard-sm: 3px 3px 0 var(--edge);
+  --shadow-soft: 0 18px 40px -24px color-mix(in srgb, var(--edge) 60%, transparent);
+}
+
+/* ─── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 400ms var(--ease), color 400ms var(--ease);
+}
+
+/* Paper grain — keeps flat colour from looking synthetic */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+}
+
+[data-theme='lagoon'] body::before,
+[data-theme='grape'] body::before {
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-2);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 25%, transparent);
+  border-radius: var(--r-full);
+  border: 3px solid var(--bg-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ─── Layout helpers ───────────────────────────────────────── */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.section {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+/* ─── Type helpers ─────────────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.serif-it {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.section-head {
+  max-width: 46ch;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin-block: 0.6rem 0.9rem;
+}
+
+.section-sub {
+  color: var(--ink-2);
+  font-size: var(--t-lg);
+  max-width: 52ch;
+}
+
+/* Floral heading treatment — only the blossom palette opts in */
+[data-theme='blossom'] .hero__title,
+[data-theme='blossom'] .section-title,
+[data-theme='blossom'] .hero__stat-value,
+[data-theme='blossom'] .contact__mail {
+  background-image: var(--bloom);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme='blossom'] .eyebrow {
+  color: #b5316a;
+}
+
+/* Hand-drawn highlighter behind a phrase */
+.marker {
+  background-image: linear-gradient(transparent 58%, var(--accent-soft) 58%, var(--accent-soft) 94%, transparent 94%);
+  padding-inline: 0.1em;
+}
+
+.marker--alt {
+  background-image: linear-gradient(transparent 58%, var(--accent-2-soft) 58%, var(--accent-2-soft) 94%, transparent 94%);
+}
+
+.underline-wobble {
+  position: relative;
+  white-space: nowrap;
+}
+
+.underline-wobble::after {
+  content: '';
+  position: absolute;
+  left: -0.05em;
+  right: -0.05em;
+  bottom: -0.12em;
+  height: 0.36em;
+  background: var(--accent);
+  opacity: 0.85;
+  clip-path: polygon(0 42%, 8% 22%, 24% 48%, 44% 20%, 66% 46%, 84% 24%, 100% 44%, 100% 74%, 0 82%);
+}
+
+/* ─── Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--r-full);
+  font-weight: 600;
+  font-size: var(--t-base);
+  border: 2px solid var(--edge);
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease),
+    background-color 200ms var(--ease), color 200ms var(--ease);
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-hard);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+}
+
+.btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--edge);
+}
+
+.btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
+
+/* ─── Surfaces ─────────────────────────────────────────────── */
+.panel {
+  background: var(--surface);
+  border: 2px solid var(--edge);
+  border-radius: var(--r-lg);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--r-full);
+  border: 1.5px solid var(--line);
+  background: var(--bg-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  transition: transform 180ms var(--ease), border-color 180ms var(--ease),
+    background-color 180ms var(--ease);
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent-faint);
+}
+
+/* ─── Motion ───────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

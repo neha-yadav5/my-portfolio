@@ -1,0 +1,72 @@
+.toolkit {
+  background: var(--bg-2);
+  border-block: 2px solid var(--edge);
+}
+
+.toolkit__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.toolkit__group {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 2px solid var(--edge);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+
+.toolkit__group:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--edge);
+}
+
+/* The first group gets the accent treatment so the grid has a focal point */
+.toolkit__group:first-child {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.toolkit__group:first-child .toolkit__group-note {
+  color: color-mix(in srgb, var(--accent-ink) 78%, transparent);
+}
+
+.toolkit__group:first-child .chip {
+  background: color-mix(in srgb, var(--accent-ink) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  color: var(--accent-ink);
+}
+
+.toolkit__group:first-child .chip:hover {
+  background: color-mix(in srgb, var(--accent-ink) 24%, transparent);
+  border-color: var(--accent-ink);
+}
+
+.toolkit__group-head {
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1.5px dashed currentColor;
+  border-color: color-mix(in srgb, currentColor 25%, transparent);
+}
+
+.toolkit__group-title {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.toolkit__group-note {
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  margin-top: 0.15rem;
+}
+
+.toolkit__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

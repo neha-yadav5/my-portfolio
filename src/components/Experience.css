@@ -1,0 +1,233 @@
+.work__list {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.work__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+/* ─── Timeline rail ────────────────────────────────────────── */
+.work__rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.work__rail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -2rem;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--line) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+.work__item:last-of-type .work__rail::before {
+  bottom: 0;
+}
+
+.work__dot {
+  position: relative;
+  margin-top: 1.9rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--edge);
+}
+
+/* ─── Card ─────────────────────────────────────────────────── */
+.work__card {
+  background: var(--surface);
+  border: 2px solid var(--edge);
+  border-radius: var(--r-lg);
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+
+.work__card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--edge);
+}
+
+.work__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px dashed var(--line);
+}
+
+.work__role {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.work__company {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.work__place {
+  font-weight: 400;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+}
+
+.work__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+  text-align: right;
+}
+
+.work__period {
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  padding: 0.25rem 0.7rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-full);
+}
+
+.work__headline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.05;
+}
+
+.work__headline strong {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--accent-2);
+}
+
+.work__headline em {
+  font-style: normal;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+
+.work__summary {
+  margin-top: 1rem;
+  font-size: var(--t-lg);
+  line-height: 1.5;
+}
+
+.work__bullets {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+.work__bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.work__bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.work__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.35rem;
+}
+
+/* ─── Education ────────────────────────────────────────────── */
+.work__education {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-left: 52px;
+  padding: 1.5rem clamp(1.35rem, 2.5vw, 2rem);
+  background: var(--bg-2);
+  border: 2px dashed var(--line);
+  border-radius: var(--r-lg);
+}
+
+.work__education-label {
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.work__education-degree {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0.2rem;
+}
+
+.work__education-school {
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+
+.work__education-mark {
+  font-size: 2.5rem;
+  color: var(--accent-3);
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .work__item {
+    grid-template-columns: 1fr;
+  }
+  .work__rail {
+    display: none;
+  }
+  .work__education {
+    margin-left: 0;
+  }
+  .work__side {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .work__headline {
+    align-items: flex-start;
+  }
+}

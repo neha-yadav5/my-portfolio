@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="citrus" data-layout="editorial">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neha Yadav — Software Engineer</title>
+    <meta
+      name="description"
+      content="Neha Yadav is a software engineer in Mumbai who builds fintech interfaces people use without a manual — Angular, React and TypeScript."
+    />
+    <meta name="keywords" content="Neha Yadav, Software Engineer, Angular, React, TypeScript, Fintech, Mumbai" />
+
+    <meta property="og:title" content="Neha Yadav — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Four years of turning credit ops, KYC and underwriting workflows into interfaces people actually enjoy using."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Apply the saved palette before first paint so themes never flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('ny-theme')
+          var allowed = ['citrus', 'blossom', 'sorbet', 'moss', 'blueprint', 'lagoon', 'grape']
+          if (saved && allowed.indexOf(saved) !== -1) {
+            document.documentElement.dataset.theme = saved
+          }
+          var layout = localStorage.getItem('ny-layout')
+          var layouts = ['editorial', 'rail', 'bento', 'zine']
+          if (layout && layouts.indexOf(layout) !== -1) {
+            document.documentElement.dataset.layout = layout
+          }
+        } catch (e) {
+          /* storage blocked — keep the default theme */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

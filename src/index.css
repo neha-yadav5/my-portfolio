@@ -1,0 +1,4 @@
+/* ─── Design system + palettes ─────────────────────────────── */
+@import url('../styles.css');
+/* ─── Layout variants (must load after the base tokens) ────── */
+@import url('../layouts.css');
