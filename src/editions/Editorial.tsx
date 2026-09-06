@@ -338,8 +338,8 @@ function ProjectsSection() {
           <p className="eyebrow">Projects</p>
           <h2 className="section-title bloom-type">Built from scratch</h2>
           <p className="section-sub">
-            Two full-stack products: one that lets an AI assistant run your social accounts, one
-            that sells a printed card over a text message.
+            Two production products I built the frontend for — the interfaces people actually
+            use, on the web and on their phones.
           </p>
         </div>
 

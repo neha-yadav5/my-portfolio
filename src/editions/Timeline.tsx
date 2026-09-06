@@ -132,8 +132,8 @@ export default function Timeline() {
           <p className="tl__eyebrow">Projects</p>
           <h2 className="tl__about-title">Built from scratch</h2>
           <p className="tl__standfirst">
-            Two full-stack products: one that lets an AI assistant run your social accounts, one
-            that sells a printed card over a text message.
+            Two production products I built the frontend for — the interfaces people actually
+            use, on the web and on their phones.
           </p>
           <div className="tl__projects-grid">
             <Projects />

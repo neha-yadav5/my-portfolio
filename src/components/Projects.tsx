@@ -33,6 +33,11 @@ export default function Projects({ className = '' }: { className?: string }) {
 
           <p className="pj__blurb">{p.blurb}</p>
 
+          <p className="pj__role">
+            <span>My role</span>
+            {p.role}
+          </p>
+
           <ul className="pj__points">
             {p.points.map(point => (
               <li key={point}>{point}</li>
