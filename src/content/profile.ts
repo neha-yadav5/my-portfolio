@@ -131,12 +131,13 @@ export const SKILLS: SkillGroup[] = [
   {
     label: 'Every day',
     note: 'What I reach for without thinking',
-    items: ['Angular (v12–17)', 'TypeScript', 'RxJS', 'React', 'JavaScript ES6+', 'HTML & CSS', 'SCSS'],
+    items: ['Angular (v14+)', 'TypeScript', 'RxJS', 'React', 'JavaScript ES6+', 'HTML & CSS', 'SCSS'],
   },
   {
     label: 'Architecture',
     note: 'How I keep codebases from calcifying',
     items: [
+      'Micro frontends',
       'Standalone components',
       'Lazy loading',
       'Design systems',

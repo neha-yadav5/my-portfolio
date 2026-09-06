@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { EDITIONS, THEMES, type EditionId } from '../theme/themes'
-import type { ThemeId } from '../theme/themes'
+import {
+  EDITIONS,
+  SHOW_LAYOUT_PICKER,
+  SHOW_PALETTE_PICKER,
+  THEMES,
+  type EditionId,
+  type ThemeId,
+} from '../theme/themes'
 import './AppearancePicker.css'
 
 /** Tiny wireframes so each design's shape is readable before you click it. */
@@ -97,7 +103,9 @@ type Props = {
 
 export default function AppearancePicker({ theme, setTheme, edition, setEdition }: Props) {
   const [open, setOpen] = useState(false)
-  const [tab, setTab] = useState<'design' | 'palette'>('design')
+  const [tab, setTab] = useState<'design' | 'palette'>(
+    SHOW_LAYOUT_PICKER ? 'design' : 'palette',
+  )
   const wrapRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -118,8 +126,14 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
     }
   }, [open])
 
+  // Both switches off — the picker stays out of the page entirely
+  if (!SHOW_LAYOUT_PICKER && !SHOW_PALETTE_PICKER) return null
+
   const activeTheme = THEMES.find(t => t.id === theme)
   const activeEdition = EDITIONS.find(e => e.id === edition)
+  const bothTabs = SHOW_LAYOUT_PICKER && SHOW_PALETTE_PICKER
+  const showDesigns = SHOW_LAYOUT_PICKER && (tab === 'design' || !bothTabs)
+  const showPalettes = SHOW_PALETTE_PICKER && (tab === 'palette' || !bothTabs)
 
   return (
     <div className="picker" ref={wrapRef}>
@@ -127,9 +141,15 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
         <div className="picker__panel" role="dialog" aria-label="Change how this site looks">
           <div className="picker__head">
             <div>
-              <p className="picker__title">Try them on</p>
+              <p className="picker__title">
+                {bothTabs ? 'Try them on' : SHOW_LAYOUT_PICKER ? 'Try a different layout' : 'Pick a palette'}
+              </p>
               <p className="picker__hint">
-                5 designs × 7 palettes. Your pick is remembered on this device.
+                {bothTabs
+                  ? '7 layouts × 7 palettes. Your pick is remembered on this device.'
+                  : SHOW_LAYOUT_PICKER
+                    ? 'Seven of them. Your pick is remembered on this device.'
+                    : 'Seven of them. Your pick is remembered on this device.'}
               </p>
             </div>
             <button className="picker__close" onClick={() => setOpen(false)} aria-label="Close">
@@ -137,27 +157,29 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
             </button>
           </div>
 
-          <div className="picker__tabs" role="tablist">
-            <button
-              role="tab"
-              aria-selected={tab === 'design'}
-              className={`picker__tab ${tab === 'design' ? 'is-active' : ''}`}
-              onClick={() => setTab('design')}
-            >
-              Design
-            </button>
-            <button
-              role="tab"
-              aria-selected={tab === 'palette'}
-              className={`picker__tab ${tab === 'palette' ? 'is-active' : ''}`}
-              onClick={() => setTab('palette')}
-            >
-              Palette
-            </button>
-          </div>
+          {bothTabs && (
+            <div className="picker__tabs" role="tablist">
+              <button
+                role="tab"
+                aria-selected={tab === 'design'}
+                className={`picker__tab ${tab === 'design' ? 'is-active' : ''}`}
+                onClick={() => setTab('design')}
+              >
+                Layout
+              </button>
+              <button
+                role="tab"
+                aria-selected={tab === 'palette'}
+                className={`picker__tab ${tab === 'palette' ? 'is-active' : ''}`}
+                onClick={() => setTab('palette')}
+              >
+                Palette
+              </button>
+            </div>
+          )}
 
-          <div className="picker__list">
-            {tab === 'design' &&
+          <div className={`picker__list ${bothTabs ? '' : 'picker__list--flush'}`}>
+            {showDesigns &&
               EDITIONS.map(e => (
                 <button
                   key={e.id}
@@ -183,7 +205,7 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
                 </button>
               ))}
 
-            {tab === 'palette' &&
+            {showPalettes &&
               THEMES.map(t => (
                 <button
                   key={t.id}
@@ -212,9 +234,12 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
               ))}
           </div>
 
-          <p className="picker__current">
-            Now showing <strong>{activeEdition?.name}</strong> in <strong>{activeTheme?.name}</strong>
-          </p>
+          {bothTabs && (
+            <p className="picker__current">
+              Now showing <strong>{activeEdition?.name}</strong> in{' '}
+              <strong>{activeTheme?.name}</strong>
+            </p>
+          )}
         </div>
       )}
 
@@ -222,14 +247,28 @@ export default function AppearancePicker({ theme, setTheme, edition, setEdition 
         className="picker__trigger"
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
-        aria-label={`Change appearance. Currently the ${activeEdition?.name} design in the ${activeTheme?.name} palette.`}
+        aria-label={
+          SHOW_LAYOUT_PICKER
+            ? `Change layout. Currently the ${activeEdition?.name} design.`
+            : `Change palette. Currently ${activeTheme?.name}.`
+        }
       >
-        <span className="picker__trigger-dots" aria-hidden="true">
-          {activeTheme?.swatch.map((c, i) => (
-            <span key={i} className="picker__dot" style={{ background: c }} />
-          ))}
+        {SHOW_PALETTE_PICKER ? (
+          <span className="picker__trigger-dots" aria-hidden="true">
+            {activeTheme?.swatch.map((c, i) => (
+              <span key={i} className="picker__dot" style={{ background: c }} />
+            ))}
+          </span>
+        ) : (
+          <span className="picker__glyph" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        )}
+        <span className="picker__trigger-label">
+          {SHOW_LAYOUT_PICKER ? activeEdition?.name : activeTheme?.name}
         </span>
-        <span className="picker__trigger-label">{activeEdition?.name}</span>
       </button>
     </div>
   )

@@ -49,6 +49,25 @@
   margin-left: 0;
 }
 
+/* Little stacked-layout glyph on the trigger */
+.picker__glyph {
+  display: grid;
+  gap: 2.5px;
+  width: 16px;
+  flex: none;
+}
+
+.picker__glyph i {
+  display: block;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+.picker__glyph i:first-child {
+  width: 70%;
+}
+
 /* ─── Panel ────────────────────────────────────────────────── */
 .picker__panel {
   width: min(380px, calc(100vw - 2.5rem));
@@ -203,6 +222,11 @@
   color: var(--accent);
   font-weight: 700;
   align-self: center;
+}
+
+/* Only one section showing — it needs its own top spacing */
+.picker__list--flush {
+  margin-top: 0.85rem;
 }
 
 .picker__current {

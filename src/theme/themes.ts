@@ -146,6 +146,17 @@ export const EDITIONS: Edition[] = [
 ]
 
 export const DEFAULT_THEME: ThemeId = 'citrus'
-export const DEFAULT_EDITION: EditionId = 'bento'
+export const DEFAULT_EDITION: EditionId = 'zine'
 export const THEME_KEY = 'ny-theme'
 export const EDITION_KEY = 'ny-edition'
+
+/* ─── Picker visibility ────────────────────────────────────── */
+/* Nothing below is deleted — these two switches only control what the
+   floating picker shows. Every palette and every layout is still built
+   and working; flip a flag back to `true` to expose it again.        */
+
+/** Show the Palette tab, letting visitors change colours. */
+export const SHOW_PALETTE_PICKER = false
+
+/** Show the Layout tab, letting visitors switch between the 7 designs. */
+export const SHOW_LAYOUT_PICKER = false
