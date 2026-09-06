@@ -10,6 +10,7 @@ import {
   STATS,
 } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Editorial.css'
 
 /**
@@ -27,6 +28,7 @@ export default function Editorial({
         <Hero />
         <About />
         <Work />
+        <ProjectsSection />
         <Toolkit />
         <Contact />
       </main>
@@ -322,6 +324,26 @@ function Work() {
             ✳
           </span>
         </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Projects ────────────────────────────────────────────── */
+function ProjectsSection() {
+  return (
+    <section id="projects" className="section projects">
+      <div className="shell">
+        <div className="section-head reveal">
+          <p className="eyebrow">Projects</p>
+          <h2 className="section-title bloom-type">Built from scratch</h2>
+          <p className="section-sub">
+            Two full-stack products: one that lets an AI assistant run your social accounts, one
+            that sells a printed card over a text message.
+          </p>
+        </div>
+
+        <Projects />
       </div>
     </section>
   )

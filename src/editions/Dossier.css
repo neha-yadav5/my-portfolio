@@ -432,6 +432,18 @@
   color: var(--ink-2);
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.df .pj__card {
+  border-radius: 4px;
+  border-width: 1px;
+  background: var(--bg-2);
+}
+
+.df .pj__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -20px color-mix(in srgb, var(--edge) 70%, transparent);
+}
+
 /* ─── Toolkit ──────────────────────────────────────────────── */
 .df__skills {
   display: grid;

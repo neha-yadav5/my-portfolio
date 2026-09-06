@@ -4,6 +4,8 @@ import {
   DEFAULT_THEME,
   EDITIONS,
   EDITION_KEY,
+  SHOW_LAYOUT_PICKER,
+  SHOW_PALETTE_PICKER,
   THEMES,
   THEME_KEY,
   type EditionId,
@@ -31,11 +33,19 @@ function persist(key: string, value: string) {
 const THEME_IDS = THEMES.map(t => t.id)
 const EDITION_IDS = EDITIONS.map(e => e.id)
 
-/** Owns both axes and mirrors them onto <html> as data attributes. */
+/**
+ * Owns both appearance axes and mirrors them onto <html> as data
+ * attributes. While a picker is switched off its axis is pinned to the
+ * default and any previously stored choice is ignored, so every visitor
+ * sees the same thing. Turning a flag back on restores the remembered
+ * choice with no other changes.
+ */
 export function useAppearance() {
-  const [theme, setThemeState] = useState<ThemeId>(() => read(THEME_KEY, THEME_IDS, DEFAULT_THEME))
+  const [theme, setThemeState] = useState<ThemeId>(() =>
+    SHOW_PALETTE_PICKER ? read(THEME_KEY, THEME_IDS, DEFAULT_THEME) : DEFAULT_THEME,
+  )
   const [edition, setEditionState] = useState<EditionId>(() =>
-    read(EDITION_KEY, EDITION_IDS, DEFAULT_EDITION),
+    SHOW_LAYOUT_PICKER ? read(EDITION_KEY, EDITION_IDS, DEFAULT_EDITION) : DEFAULT_EDITION,
   )
 
   useEffect(() => {

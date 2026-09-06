@@ -784,6 +784,19 @@
   line-height: 1;
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.ed .pj__card {
+  border-width: 2px;
+  border-color: var(--edge);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.ed .pj__card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--edge);
+}
+
 /* ─── Toolkit ──────────────────────────────────────────────── */
 .ed .toolkit {
   background: var(--bg-2);

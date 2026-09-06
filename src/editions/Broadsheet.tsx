@@ -1,5 +1,6 @@
 import { EDUCATION, JOBS, NAV, PRINCIPLES, PROFILE, SKILLS, STATS } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Broadsheet.css'
 
 /**
@@ -140,6 +141,15 @@ export default function Broadsheet() {
             </p>
           </div>
         </article>
+      </section>
+
+      {/* ─── Projects ───────────────────────────────────────── */}
+      <section id="projects" className="bs__section shell">
+        <h2 className="bs__section-title">
+          <span>Built from scratch</span>
+        </h2>
+
+        <Projects />
       </section>
 
       {/* ─── Toolkit index ──────────────────────────────────── */}

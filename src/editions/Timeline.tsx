@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { EDUCATION, JOBS, PRINCIPLES, PROFILE, SKILLS, STATS } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Timeline.css'
 
 /**
@@ -124,6 +125,21 @@ export default function Timeline() {
           </div>
         </section>
       </div>
+
+      {/* ─── Projects ───────────────────────────────────────── */}
+      <section id="projects" className="tl__projects">
+        <div className="shell">
+          <p className="tl__eyebrow">Projects</p>
+          <h2 className="tl__about-title">Built from scratch</h2>
+          <p className="tl__standfirst">
+            Two full-stack products: one that lets an AI assistant run your social accounts, one
+            that sells a printed card over a text message.
+          </p>
+          <div className="tl__projects-grid">
+            <Projects />
+          </div>
+        </div>
+      </section>
 
       {/* ─── About / beliefs ────────────────────────────────── */}
       <section id="about" className="tl__about">

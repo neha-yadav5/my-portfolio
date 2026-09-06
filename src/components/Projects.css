@@ -1,0 +1,181 @@
+/* ============================================================
+   Shared project cards. Neutral base built on the palette
+   tokens — each edition overrides the shape under its root.
+   ============================================================ */
+/* Full-width feature cards, stacked — these are large builds and a
+   tiled grid would squeeze them into unreadable columns. */
+.pj {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.pj__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(1.35rem, 2.5vw, 1.75rem);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease),
+    border-color 260ms var(--ease);
+}
+
+.pj__card:hover {
+  border-color: var(--accent);
+}
+
+.pj__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px dashed var(--line);
+}
+
+.pj__index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.pj__kind {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.pj__name {
+  margin-top: 1.1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.pj__meta {
+  margin-top: 0.2rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.pj__meta span {
+  opacity: 0.5;
+}
+
+.pj__blurb {
+  margin-top: 0.85rem;
+  font-size: var(--t-lg);
+  line-height: 1.55;
+  max-width: 72ch;
+}
+
+/* Points read better as columns once there are several of them */
+.pj__points {
+  columns: 2;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 1.5rem;
+}
+
+.pj__points li {
+  break-inside: avoid;
+  margin-bottom: 0.9rem;
+}
+
+.pj__points li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.pj__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.pj__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem 2rem;
+  margin-top: auto;
+  padding-top: 1.1rem;
+  border-top: 1.5px dashed var(--line);
+}
+
+.pj__metric {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.pj__metric strong {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent-2);
+}
+
+.pj__metric em {
+  font-style: normal;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+
+.pj__stack {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 260px;
+  gap: 0.35rem 0.8rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-2);
+}
+
+.pj__stack span::before {
+  content: '· ';
+  color: var(--accent);
+}
+
+.pj__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: var(--t-sm);
+  color: var(--accent);
+  border-bottom: 1.5px solid var(--accent-soft);
+  transition: border-color 200ms var(--ease);
+}
+
+.pj__link:hover {
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 780px) {
+  .pj__points {
+    columns: 1;
+  }
+}

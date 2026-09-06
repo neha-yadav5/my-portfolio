@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="citrus" data-edition="bento">
+<html lang="en" data-theme="citrus" data-edition="zine">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -25,35 +25,24 @@
       rel="stylesheet"
     />
 
-    <script>
-      // Apply the saved design + palette before first paint so nothing flashes.
-      (function () {
-        try {
-          var themes = ['citrus', 'blossom', 'sorbet', 'moss', 'blueprint', 'lagoon', 'grape']
-          var editions = [
-            'editorial',
-            'zine',
-            'bento',
-            'dossier',
-            'broadsheet',
-            'poster',
-            'timeline',
-          ]
+    <!--
+      The layout and palette are fixed on <html> above (zine + citrus).
+      If SHOW_LAYOUT_PICKER or SHOW_PALETTE_PICKER is re-enabled in
+      src/theme/themes.ts, restore the pre-paint restore script here so
+      a remembered choice doesn't flash the default first:
 
-          var theme = localStorage.getItem('ny-theme')
-          if (theme && themes.indexOf(theme) !== -1) {
-            document.documentElement.dataset.theme = theme
-          }
-
-          var edition = localStorage.getItem('ny-edition')
-          if (edition && editions.indexOf(edition) !== -1) {
-            document.documentElement.dataset.edition = edition
-          }
-        } catch (e) {
-          /* storage blocked — keep the defaults */
-        }
-      })()
-    </script>
+      <script>
+        (function () {
+          try {
+            var saved = localStorage.getItem('ny-edition')
+            var allowed = ['editorial','zine','bento','dossier','broadsheet','poster','timeline']
+            if (saved && allowed.indexOf(saved) !== -1) {
+              document.documentElement.dataset.edition = saved
+            }
+          } catch (e) {}
+        })()
+      </script>
+    -->
   </head>
   <body>
     <div id="root"></div>

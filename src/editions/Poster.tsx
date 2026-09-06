@@ -1,5 +1,6 @@
 import { EDUCATION, JOBS, MARQUEE, NAV, PRINCIPLES, PROFILE, SKILLS, STATS } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Poster.css'
 
 function Marquee({ items, reverse = false }: { items: readonly string[]; reverse?: boolean }) {
@@ -143,10 +144,18 @@ export default function Poster() {
 
       <Marquee items={['Open to new roles', 'Mumbai, India', 'Angular & React', 'Say hello']} reverse />
 
+      {/* ─── Projects ───────────────────────────────────────── */}
+      <section id="projects" className="ps__projects">
+        <div className="shell">
+          <p className="ps__kicker">03 — What I built</p>
+          <Projects />
+        </div>
+      </section>
+
       {/* ─── Toolkit ────────────────────────────────────────── */}
       <section id="toolkit" className="ps__toolkit">
         <div className="shell">
-          <p className="ps__kicker">03 — The toolkit</p>
+          <p className="ps__kicker">04 — The toolkit</p>
 
           {SKILLS.map(g => (
             <div key={g.label} className="ps__tool-row reveal">
@@ -167,7 +176,7 @@ export default function Poster() {
       {/* ─── Contact ────────────────────────────────────────── */}
       <section id="contact" className="ps__contact">
         <div className="shell">
-          <p className="ps__kicker ps__kicker--invert">04 — Say hello</p>
+          <p className="ps__kicker ps__kicker--invert">05 — Say hello</p>
           <h2 className="ps__contact-head">
             Got something
             <br />

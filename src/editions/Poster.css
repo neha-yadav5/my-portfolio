@@ -428,6 +428,29 @@
   color: var(--ink);
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.ps__projects {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  border-bottom: var(--edge-w) solid var(--ink);
+}
+
+.ps .pj__card {
+  border-radius: 0;
+  border-width: 2px;
+  border-color: var(--ink);
+}
+
+.ps .pj__name {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.ps .pj__card:hover {
+  transform: none;
+  background: var(--accent-faint);
+}
+
 /* ─── Toolkit ──────────────────────────────────────────────── */
 .ps__toolkit {
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
