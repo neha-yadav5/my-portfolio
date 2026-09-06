@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { EDUCATION, JOBS, NAV, PRINCIPLES, PROFILE, SKILLS, STATS } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Dossier.css'
 
 /**
@@ -173,10 +174,20 @@ export default function Dossier() {
           </div>
         </section>
 
+        {/* ─── Projects ─────────────────────────────────────── */}
+        <section id="projects" className="df__section">
+          <header className="df__section-head">
+            <span className="df__section-num">03</span>
+            <h2>Projects</h2>
+          </header>
+
+          <Projects />
+        </section>
+
         {/* ─── Toolkit ──────────────────────────────────────── */}
         <section id="toolkit" className="df__section">
           <header className="df__section-head">
-            <span className="df__section-num">03</span>
+            <span className="df__section-num">04</span>
             <h2>Toolkit</h2>
           </header>
 
@@ -200,7 +211,7 @@ export default function Dossier() {
         {/* ─── Contact ──────────────────────────────────────── */}
         <section id="contact" className="df__section df__contact">
           <header className="df__section-head">
-            <span className="df__section-num">04</span>
+            <span className="df__section-num">05</span>
             <h2>Contact</h2>
           </header>
 
@@ -223,7 +234,7 @@ export default function Dossier() {
           </div>
 
           <div className="df__form">
-            <p className="df__form-label">05 — Or send it from here</p>
+            <p className="df__form-label">06 — Or send it from here</p>
             <ContactForm />
           </div>
 

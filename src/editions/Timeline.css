@@ -299,6 +299,20 @@
   line-height: 1.65;
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.tl__projects {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.tl__projects-grid {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.tl .pj__card {
+  border-radius: 16px;
+  background: var(--bg-2);
+}
+
 /* ─── About ────────────────────────────────────────────────── */
 .tl__about {
   background: var(--bg-2);

@@ -335,6 +335,30 @@
   font-size: 1.4rem;
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.bs .pj__card {
+  border-radius: 0;
+  border-width: 1px;
+  border-color: var(--ink);
+  background: var(--bg-2);
+}
+
+.bs .pj__name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.bs .pj__metric strong {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.bs .pj__card:hover {
+  transform: none;
+  background: var(--surface);
+}
+
 /* ─── Index ────────────────────────────────────────────────── */
 .bs__index {
   columns: 2;

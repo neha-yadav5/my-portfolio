@@ -497,6 +497,15 @@
   margin-top: 0.35rem;
 }
 
+/* ─── Projects ─────────────────────────────────────────────── */
+.bn .pj__card {
+  border-radius: var(--tile-r);
+}
+
+.bn .pj__card:hover {
+  box-shadow: var(--tile-shadow);
+}
+
 /* ─── Toolkit ──────────────────────────────────────────────── */
 .bn__toolkit {
   display: grid;

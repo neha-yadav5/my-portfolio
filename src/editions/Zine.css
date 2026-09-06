@@ -138,6 +138,23 @@
 }
 
 /* ─── Blocks ───────────────────────────────────────────────── */
+.ed.zine .pj__card {
+  border-width: 3px;
+  border-radius: 0;
+}
+
+.ed.zine .pj__card:nth-child(odd) {
+  rotate: -0.5deg;
+}
+
+.ed.zine .pj__card:nth-child(even) {
+  rotate: 0.5deg;
+}
+
+.ed.zine .pj__card:hover {
+  rotate: 0deg;
+}
+
 .ed.zine .about__quote {
   border-radius: 0;
   border-left-width: 6px;
@@ -166,7 +183,8 @@
 /* Straighten up on small screens — tilt reads as broken there */
 @media (max-width: 720px) {
   .ed.zine .work__card,
-  .ed.zine .about__principle {
+  .ed.zine .about__principle,
+  .ed.zine .pj__card {
     rotate: 0deg !important;
   }
 }

@@ -125,6 +125,82 @@ export const JOBS: Job[] = [
   },
 ]
 
+export type Project = {
+  id: string
+  name: string
+  org?: string
+  year?: string
+  kind: string
+  blurb: string
+  points: string[]
+  metric?: { value: string; label: string }
+  stack: string[]
+  link?: { label: string; href: string }
+}
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'dgitl',
+    name: 'dgitl',
+    kind: 'AI social platform',
+    blurb:
+      'A social media automation platform with AI-generated content. Creators connect the accounts they own, generate captions, images, video, fashion try-ons and a cloned voice, then publish or schedule across every platform at once — paying for all of it from a single credit balance. The same account works from five places: the web app, native iOS and Android, an MCP server, a Telegram/WhatsApp bot, and an internal admin console.',
+    points: [
+      'An MCP server that lets Claude, ChatGPT, Gemini, Codex and Cursor operate a real account by conversation — 41 tools covering posting, scheduling, generation, analytics and billing. Guarded with OAuth + PKCE, hashed access tokens, single-use approval codes, per-plan tool access, rate limits and a full audit trail the user can read.',
+      'One backend behind all five surfaces, so business rules, billing and security live in exactly one place. Post from Claude and it lands in the web activity feed; buy credits on the iPhone and the balance is there in the Telegram bot.',
+      'A credit ledger that reserves first and charges only on success. Post to four platforms with one failure and you are billed for three, told which one broke and why. Stranded reservations release themselves after 15 minutes so credits never get stuck.',
+      'A publishing engine that respects each platform rather than flattening them — Instagram stories, reels and carousels, LinkedIn company pages, YouTube with full metadata, TikTok, Snapchat, X and Facebook. OAuth tokens are AES-256-GCM encrypted at rest and health-checked, so an expired token prompts a reconnect instead of silently failing a post.',
+      'AI orchestration with a provider fallback chain — the user’s own key first under BYOK, then the platform key, then a service account, then a gateway. Gemini for text and images, Veo 3.1 for video, ElevenLabs for voice cloning, Hermes for reading chat intent.',
+      'A chat agent on Telegram and WhatsApp that always replies with a preview and a Confirm button before publishing anything or spending a credit — if the model misreads you, you cancel and nothing happens.',
+    ],
+    metric: { value: '5', label: 'surfaces, one account' },
+    stack: [
+      'Node 22 & Express',
+      'TypeScript',
+      'SQL Server & Prisma',
+      'Socket.IO',
+      'Redis & Bull',
+      'React 19',
+      'SwiftUI',
+      'Kotlin & Compose',
+      'MCP',
+      'Gemini · Veo 3.1',
+      'ElevenLabs',
+      'Mollie · StoreKit · Play Billing',
+    ],
+  },
+  {
+    id: 'simchabuzz',
+    name: 'SimchaBuzz',
+    kind: 'Full-stack product',
+    blurb:
+      'A platform for personalising and buying Jewish simcha cards and invitations — on the web, in a mobile app, or entirely by text message. The customer picks a design, types in their own names and dates, pays, and gets back a print-ready card in minutes rather than after a week of back-and-forth with a designer. Finished cards go out by email, MMS or WhatsApp.',
+    points: [
+      'A complete purchase over SMS: choose an occasion, pick a design from a texted picture sheet, answer one question per line of the card, approve a watermarked proof, pay and receive it — with no app, no browser and no account, since the account is created from the phone number mid-conversation.',
+      'An IVR payment flow for customers with no saved card. Twilio calls them, they enter the card number, expiry and CVC on the keypad, and each entry is length-checked and re-asked rather than failing the call. Card details never touch our servers and are never written to a log.',
+      'One set of layout rules drives every surface — the web preview, the app, the admin editor, the texted proof and the 300 DPI print PDF. Positions are stored as percentages of a fixed canvas and type sizes relative to it, so what the customer sees really is what prints.',
+      'A drag-and-drop admin editor where staff position fields on the artwork, group lines into sections that angle as one block, and control the typeface, size, weight, colour and alignment of every line against a live preview at true scale.',
+      'English and Hebrew throughout, including right-to-left layout, an on-screen Hebrew keyboard, and text that shrinks to fit its line so a long name never overlaps the one beneath it.',
+      'Stripe with server-side confirmation and a 15-minute payment window that releases unpaid orders automatically, plus a cart and saved drafts that sync between the website and the app.',
+    ],
+    metric: { value: '3', label: 'ways to order' },
+    stack: [
+      'React 19',
+      'React Native / Expo',
+      'TypeScript',
+      'Node & Express',
+      'MongoDB',
+      'Redux Toolkit',
+      'Stripe',
+      'Twilio (SMS · WhatsApp · IVR)',
+      'Cloudinary',
+      'Puppeteer',
+      'Tailwind',
+      'i18next',
+    ],
+  },
+]
+
 export type SkillGroup = { label: string; note: string; items: string[] }
 
 export const SKILLS: SkillGroup[] = [
@@ -207,6 +283,7 @@ export const MARQUEE = [
 export const NAV = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Toolkit', href: '#toolkit' },
   { label: 'Contact', href: '#contact' },
 ]

@@ -9,6 +9,7 @@ import {
   STATS,
 } from '../content/profile'
 import ContactForm from '../components/ContactForm'
+import Projects from '../components/Projects'
 import './Bento.css'
 
 /**
@@ -207,6 +208,20 @@ export default function Bento() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* ─── Projects ───────────────────────────────────────── */}
+      <section id="projects" className="bn__section shell">
+        <div className="bn__head reveal">
+          <p className="bn__eyebrow">Projects</p>
+          <h2 className="bn__section-title bloom-type">Built from scratch</h2>
+          <p className="bn__section-sub">
+            Two full-stack products: one that lets an AI assistant run your social accounts, one
+            that sells a printed card over a text message.
+          </p>
+        </div>
+
+        <Projects />
       </section>
 
       {/* ─── Toolkit ────────────────────────────────────────── */}
